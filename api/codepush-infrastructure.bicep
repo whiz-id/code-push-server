@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-param project_suffix string
-param az_location string = 'eastus'
+param project_suffix string = 'whiz'
+param az_location string = 'southeastasia'
 param github_client_id string
 @secure()
 param github_client_secret string
@@ -25,8 +25,7 @@ resource servicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
     reserved: true
   }
   sku: {
-    name: 'S1'
-    tier: 'Standard'
+    name: 'F1'
   }
 }
 
@@ -52,7 +51,6 @@ resource webApp 'Microsoft.Web/sites@2022-03-01' = {
     httpsOnly: true
     siteConfig: {
       minTlsVersion: '1.2'
-      alwaysOn: true
       linuxFxVersion: 'NODE|18-lts'
       scmType: 'LocalGit'
       appSettings: [
