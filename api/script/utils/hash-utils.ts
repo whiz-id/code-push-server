@@ -225,10 +225,16 @@ export class PackageManifest {
   }
 
   public static isIgnored(relativeFilePath: string): boolean {
-    const __MACOSX = "__MACOSX/";
+    const MACOSX = "__MACOSX/";
     const DS_STORE = ".DS_Store";
-
-    return startsWith(relativeFilePath, __MACOSX) || relativeFilePath === DS_STORE || endsWith(relativeFilePath, "/" + DS_STORE);
+    const CODEPUSH_METADATA = ".codepushrelease";
+    return (
+      startsWith(relativeFilePath, MACOSX) ||
+      relativeFilePath === DS_STORE ||
+      endsWith(relativeFilePath, `/${DS_STORE}`) ||
+      relativeFilePath === CODEPUSH_METADATA ||
+      endsWith(relativeFilePath, `/${CODEPUSH_METADATA}`)
+    );
   }
 }
 
